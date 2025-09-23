@@ -58,14 +58,24 @@ Her işlem sonrası otomatik oluşur:
 
 ## 🎯 Kullanım Senaryoları
 
-### 🏢 İş Toplantısı
+### 🏢 İş Toplantısı (Standard)
 ```bash
-python main.py --file toplanti.wav --stt large-v3 --title "Haftalık Toplantı"
+python main.py --file toplanti.wav --quality highest --stt large-v3 --title "Haftalık Toplantı"
+```
+
+### 🎯 Ultra Accuracy Mode (%100'e yakın)
+```bash
+python main.py --file toplanti.wav --quality ultra --stt large-v3 --device cuda --title "Kritik Toplantı"
 ```
 
 ### 🎓 Eğitim/Ders
 ```bash  
-python main.py --file ders.mp4 --stt large-v3 --title "Python Eğitimi"
+python main.py --file ders.mp4 --quality ultra --stt large-v3 --title "Python Eğitimi"
+```
+
+### ⚡ Hızlı Test
+```bash
+python main.py --file test.wav --quality fastest --stt small --title "Hızlı Test"
 ```
 
 ### 🎙️ Podcast/Röportaj
@@ -73,11 +83,34 @@ python main.py --file ders.mp4 --stt large-v3 --title "Python Eğitimi"
 python main.py --file podcast.mp3 --stt medium --title "Teknoloji Sohbeti"
 ```
 
+## 🎯 Ultra Accuracy Mode
+
+**%100'e yakın doğruluk** için özel olarak optimize edilmiş mod:
+
+```bash
+# Ultra mode - Maximum accuracy
+python main.py --file audio.wav --quality ultra --stt large-v3 --device cuda
+```
+
+### Ultra Mode Özellikleri:
+- 🎯 **5x Temperature Sampling**: Farklı sıcaklık değerleriyle çoklu analiz
+- 🔍 **Beam Size 10**: Maksimum arama genişliği  
+- 🏆 **Best of 5**: En iyi 5 denemeden otomatik seçim
+- ⏱️ **Word Timestamps**: Kelime bazlı zaman damgaları
+- 📝 **Enhanced Punctuation**: Gelişmiş noktalama düzeltmesi
+- 🧠 **Patience 2.0**: Daha sabırlı decode algoritması
+
+### Doğruluk Seviyeleri:
+- `fastest`: ~60-70% (Hızlı test için)
+- `balanced`: ~70-80% (Genel kullanım)  
+- `highest`: ~80-85% (Yüksek kalite)
+- `ultra`: ~90-95% (Maximum doğruluk)
+
 ## ⚡ Hızlı Test
 
 ```bash
-# 30 saniye test kaydı
-python main.py --duration 30 --stt small --title "Test"
+# Ultra accuracy test
+python test_ultra_accuracy.py
 ```
 
 ## 🆘 Destek

@@ -845,7 +845,7 @@ def _transcribe_hybrid(
 def transcribe_advanced(
     path: str,
     language: str = "tr",
-    quality: str = "balanced",  # "fastest", "balanced", "highest", "hybrid"
+    quality: str = "ultra",  # "fastest", "balanced", "highest", "ultra", "hybrid"
     preprocess: bool = True,
     engine: str = "auto",  # "whisper", "azure", "google", "hybrid", "auto"
     model_name: Optional[str] = None,  # Model adı (large-v3, medium, vs.)
@@ -894,6 +894,8 @@ def transcribe_advanced(
         model_size = "medium"
     elif quality == "highest":
         model_size = "large-v3"
+    elif quality == "ultra":
+        model_size = "large-v3"  # Ultra mode with enhanced parameters
     else:  # hybrid
         return _transcribe_hybrid_advanced(processed_path, language, audio_info, **kwargs)
     
@@ -905,6 +907,8 @@ def transcribe_advanced(
             beam_size = 2
         elif quality == "highest":
             beam_size = 5
+        elif quality == "ultra":
+            beam_size = 10  # Ultra high beam size for maximum accuracy
         else:
             beam_size = 1
     
@@ -929,20 +933,38 @@ def transcribe_advanced(
         else:
             engine = "whisper"
     
-    # Uzun kayıt optimizasyonları
-    transcribe_kwargs = kwargs.copy()
-    if long_form:
-        # Uzun kayıtlar için özel parametreler
-        transcribe_kwargs.update({
-            'chunk_length_s': 30,  # 30 saniyelik parçalar
-            'batch_size': 4,  # Daha büyük batch
-            'progress': True,  # İlerleme göster
-        })
-        if enable_vad:
+    # Ultra mode optimizasyonları
+    if quality == "ultra":
+        # Maximum accuracy için özel parametreler
+        transcribe_kwargs = {
+            'temperature': [0.0, 0.2, 0.4, 0.6, 0.8],  # Multiple temperature sampling
+            'best_of': 5,  # En iyi 5 denemeden seç
+            'beam_size': beam_size,
+            'patience': 2.0,  # Daha sabırlı decode
+            'suppress_tokens': [-1],  # Özel token bastırma
+            'condition_on_previous_text': True,
+            'compression_ratio_threshold': 2.4,
+            'logprob_threshold': -1.0,
+            'no_speech_threshold': 0.6,
+            'word_timestamps': True,  # Ultra modda kelime zamanları
+            'prepend_punctuations': "\"'([{-",
+            'append_punctuations': "\"'.,:!?)]}"
+        }
+    else:
+        # Uzun kayıt optimizasyonları
+        transcribe_kwargs = kwargs.copy()
+        if long_form:
+            # Uzun kayıtlar için özel parametreler
             transcribe_kwargs.update({
-                'vad_min_silence_ms': 500,  # Daha uzun sessizlik gerekli
-                'vad_window_ms': 30  # Daha büyük pencere
+                'chunk_length_s': 30,  # 30 saniyelik parçalar
+                'batch_size': 4,  # Daha büyük batch
+                'progress': True,  # İlerleme göster
             })
+            if enable_vad:
+                transcribe_kwargs.update({
+                    'vad_min_silence_ms': 500,  # Daha uzun sessizlik gerekli
+                    'vad_window_ms': 30  # Daha büyük pencere
+                })
 
     # Transkripsiyon yap
     if engine == "whisper":

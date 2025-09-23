@@ -119,9 +119,10 @@ def run(args):
             device=args.device,
             language=args.language,
             content_type=args.mode,
+            quality=args.quality,  # Ultra mode için yeni parametre
             long_form=is_long_recording,
-            beam_size=5 if is_long_recording else 1,  # Uzun kayıtlarda daha yüksek kalite
-            vad_threshold=0.3 if is_long_recording else 0.5
+            beam_size=10 if args.quality == "ultra" else (5 if is_long_recording else 1),  # Ultra modda maksimum beam size
+            vad_threshold=0.2 if args.quality == "ultra" else (0.3 if is_long_recording else 0.5)  # Ultra modda daha hassas VAD
         )
         
         segments = result['segments']
@@ -321,6 +322,7 @@ def parse_args():
     p.add_argument("--device", default="cpu", choices=["cpu","cuda"], help="STT cihazı")
     p.add_argument("--language", default="tr", choices=["tr","en","de","fr","es","it","la"], help="Kayıt dili")
     p.add_argument("--mode", default="auto", choices=["meeting","lecture","interview","auto"], help="İçerik türü")
+    p.add_argument("--quality", default="ultra", choices=["fastest","balanced","highest","ultra"], help="Doğruluk seviyesi (%100'e yakın için ultra)")
     p.add_argument("--title", default="Ders/Toplantı – Notlar")
     return p.parse_args()
 

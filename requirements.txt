@@ -1,0 +1,23 @@
+faster-whisper
+sounddevice
+soundfile
+scipy
+numpy
+transformers
+torch
+sentencepiece
+python-docx
+docx2pdf
+# Enhanced STT dependencies
+librosa>=0.10.0
+noisereduce>=3.0.0
+webrtcvad>=2.0.10
+pydub>=0.25.1
+pyannote.audio>=3.1.0
+openai-whisper
+rapidfuzz>=3.0.0
+speechbrain>=0.5.16
+azure-cognitiveservices-speech>=1.34.0
+google-cloud-speech>=2.22.0
+# Performance monitoring
+psutil>=5.9.0

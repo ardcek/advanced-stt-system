@@ -1,0 +1,100 @@
+# Özel Terimler Sözlüğü - Çoklu Dil Desteği
+
+# İsimler
+Arda
+Ali
+Ayşe
+Mehmet
+Zeynep
+
+# Teknik Terimler (Türkçe)
+Python
+NumPy
+Pandas
+PostgreSQL
+Docker
+Kubernetes
+önbellek
+oturum
+bildirim
+güncelleme
+doküman
+metrik
+senaryo
+görseller
+
+# İngilizce Teknik Terimler
+artificial intelligence
+machine learning
+deep learning
+neural network
+database
+server
+client
+interface
+algorithm
+JavaScript
+React
+Angular
+Node.js
+MongoDB
+MySQL
+
+# İngilizce Akademik Terimler
+literature
+reference
+experiment
+analysis
+hypothesis
+methodology
+research
+academic
+scientific
+theoretical
+empirical
+qualitative
+quantitative
+
+# Latince Terimler
+vice versa
+et cetera
+exempli gratia
+id est
+per se
+ad absurdum
+sine qua non
+prima facie
+de facto
+de jure
+
+# Almanca Terimler  
+Gesundheit
+Volkswagen
+Deutschland
+Kindergarten
+Schadenfreude
+Weltanschauung
+
+# Fransızca Terimler
+bonjour
+merci
+s'il vous plaît
+je ne sais pas
+c'est la vie
+raison d'être
+
+# İspanyolca Terimler
+hola
+gracias
+por favor
+de nada
+buenas noches
+hasta la vista
+
+# İtalyanca Terimler
+ciao
+grazie
+prego
+bene
+molto bene
+arrivederci

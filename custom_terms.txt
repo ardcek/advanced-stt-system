@@ -1,9 +1,16 @@
-# Özel Terimler Sözlüğü - Çoklu Dil Desteği
+# Custom Terms Dictionary
+# Add your specialized terms here
 
-# İsimler
-Arda
-Ali
-Ayşe
+# Example format:
+# abbreviation,full_form
+# technical_term,explanation
+
+# Technical terms
+API,Application Programming Interface
+ML,Machine Learning
+AI,Artificial Intelligence
+
+# Add more terms as needed...
 Mehmet
 Zeynep
 

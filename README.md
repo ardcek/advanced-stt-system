@@ -4,35 +4,25 @@
 
 Advanced Speech-to-Text system with multi-language support, long recording processing (2-3 hours), and educational content analysis.
 
-## 🚀 Hızlı Başlangıç
+## 🌟 Features
 
-### 🎮 Kolay Kullanım (Başlangıç)
-```bash
-# Çift tıklayın
-BASLA.bat
-```
+### � Core Capabilities
+- **Multi-engine STT**: Whisper (tiny to large-v3), Azure Cognitive Services, Google Cloud Speech
+- **Long recordings**: 2-3 hour recordings with chunk-based processing
+- **Real-time progress**: Live progress tracking and performance monitoring
+- **Quality assessment**: Audio quality analysis and reliability scoring
 
-### ⚡ Terminal Kullanımı
-```bash
-# Mevcut ses dosyası
-python main.py --file meeting.wav --stt large-v3
+### 🌍 Multi-Language Support
+- **7 Languages**: Turkish, English, German, French, Spanish, Italian, Latin
+- **Perfect spelling**: Advanced spell correction for technical terms
+- **Custom terms**: Specialized terminology dictionary
+- **Foreign words**: Accurate transcription of international content
 
-# Canlı kayıt  
-python main.py --stream --stt large-v3
-
-# Test kaydı
-python main.py --duration 30 --stt small
-```
-
-## 📁 Dosya Yapısı
-
-```
-📁 PROJE/
-├── 🚀 BASLA.bat              # Grafiksel menü
-├── 🐍 main.py               # Ana uygulama  
-├── 📚 README_STT.md         # Detaylı dokümantasyon
-├── 📋 KULLANIM_KILAVUZU.md  # Hızlı kılavuz
-├── ⚡ CHEAT_SHEET.md        # Komut referansı
+### � Advanced Processing
+- **Memory management**: Efficient processing with memory optimization
+- **Error recovery**: Robust error handling and automatic fallbacks
+- **Multiple formats**: TXT, MD, SRT, DOCX output formats
+- **Performance monitoring**: Real-time system metrics and reporting
 ├── 📁 modules/              # Uygulama modülleri
 ├── 📁 venv/                 # Python sanal ortamı
 └── 📄 requirements.txt      # Gerekli kütüphaneler

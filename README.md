@@ -1,4 +1,28 @@
-# 🌟 U## 🚀 6 Ana Sistem Bileşeni
+# 🌟 Ultra Advanced STT System - %99.9 Doğruluk Hedefi
+
+**Made by Mehmet Arda Çekiç** © 2025
+
+Bu sistem, **%99.9 doğruluk hedefiyle** geliştirilmiş ultra-gelişmiş bir Speech-to-Text (STT) sistemidir. **6 ana bileşenle** mükemmel transkripsiyon kalitesi sağlar ve 10000+ satır kodla maksimum doğruluğa ulaşır.
+
+## 🚀 Hızlı Başlangıç
+
+### 📦 Kurulum
+```bash
+git clone https://github.com/ardcek/advanced-stt-system.git
+cd advanced-stt-system
+pip install -r requirements.txt
+```
+
+### ⚡ Hızlı Test
+```bash
+# Ultra kalite ile test
+python main.py --file audio.wav --quality ultra --target-accuracy 0.999
+
+# Hızlı test
+python main.py --file audio.wav --quality fastest
+```
+
+## 🚀 6 Ana Sistem Bileşeni
 
 ### 🔧 1. Advanced Audio Preprocessing *(600+ satır)*
 - **SpectralNoiseReducer**: Spektral gürültü azaltma algoritmaları
@@ -49,15 +73,11 @@
 | **Ultra** | **%99.9** | **%99-99.9** | **0.3x realtime** | **Tüm 6 bileşen aktif** |
 | Highest | %95-98 | %96-98 | 1x realtime | 4 bileşen aktif |
 | Balanced | %90-95 | %92-95 | 3x realtime | 2 bileşen aktif |
-| Fastest | %80-90 | %85-90 | 10x realtime | Temel işleme |ystem - %99.9 Doğruluk Hedefi �
-
-**Made by Mehmet Arda Çekiç** © 2025
-
-Bu sistem, **%99.9 doğruluk hedefiyle** geliştirilmiş ultra-gelişmiş bir Speech-to-Text (STT) sistemidir. **6 ana bileşenle** mükemmel transkripsiyon kalitesi sağlar ve 10000+ satır kodla maksimum doğruluğa ulaşır.
+| Fastest | %80-90 | %85-90 | 10x realtime | Temel işleme |
 
 ## 🌟 Features
 
-### � Core Capabilities
+### 🚀 Core Capabilities
 - **Multi-engine STT**: Whisper (tiny to large-v3), Azure Cognitive Services, Google Cloud Speech
 - **Long recordings**: 2-3 hour recordings with chunk-based processing
 - **Real-time progress**: Live progress tracking and performance monitoring
@@ -69,74 +89,62 @@ Bu sistem, **%99.9 doğruluk hedefiyle** geliştirilmiş ultra-gelişmiş bir Sp
 - **Custom terms**: Specialized terminology dictionary
 - **Foreign words**: Accurate transcription of international content
 
-### � Advanced Processing
+### ⚡ Advanced Processing
 - **Memory management**: Efficient processing with memory optimization
 - **Error recovery**: Robust error handling and automatic fallbacks
 - **Multiple formats**: TXT, MD, SRT, DOCX output formats
 - **Performance monitoring**: Real-time system metrics and reporting
-├── 📁 modules/              # Uygulama modülleri
-├── 📁 venv/                 # Python sanal ortamı
-└── 📄 requirements.txt      # Gerekli kütüphaneler
+
+## 🏗️ Proje Yapısı
+
+```
+advanced-stt-system/
+├── 📄 main.py               # Ana uygulama dosyası
+├── 📁 modules/              # Ultra advanced modüller
+│   ├── 🔧 advanced_audio.py         # Gelişmiş ses işleme
+│   ├── 🤖 ensemble_stt.py           # Multi-model ensemble
+│   ├── 🧠 ai_post_processor.py      # AI tabanlı post-processing
+│   ├── 🎭 advanced_vad_diarization.py # VAD & Diarization
+│   ├── 📚 adaptive_learning.py      # Adaptive learning
+│   └── 🌟 ultra_quality_mode.py     # Ultra kalite modu
+├── 📄 requirements.txt      # Gerekli kütüphaneler
+└── 📖 README.md            # Bu dosya
 ```
 
-## ⚙️ Özellikler
+## ⚙️ Temel Özellikler
 
 ✅ **Çoklu Model**: Whisper, Azure, Google Cloud  
-✅ **Yüksek Kalite**: Large-v3 model ile %95+ doğruluk  
-✅ **Akıllı Analiz**: Görev/karar çıkarımı  
+✅ **Ultra Kalite**: %99.9 doğruluk hedefi  
+✅ **Akıllı Analiz**: AI tabanlı post-processing  
 ✅ **Çoklu Format**: WAV, MP3, MP4, M4A  
-✅ **Canlı Kayıt**: Real-time transkripsiyon  
-✅ **Çoklu Çıktı**: TXT, MD, SRT, DOCX  
-
-## 📊 Çıktı Dosyaları
-
-Her işlem sonrası otomatik oluşur:
-
-- 📄 **transcript.txt** - Ham transkripsiyon
-- 📋 **summary.txt** - Genel özet  
-- ✅ **tasks.txt** - Tespit edilen görevler
-- 📝 **notes.md** - Yapılandırılmış notlar
-- 🎬 **meeting.srt** - Alt yazı dosyası
-- 📊 **meeting_minutes.docx** - Resmi tutanak
-
-## 📚 Dokümantasyon
-
-| Dosya | Seviye | İçerik |
-|-------|--------|---------|
-| `README_STT.md` | 🔬 İleri | Tam teknik dokümantasyon |
-| `KULLANIM_KILAVUZU.md` | 📖 Orta | Adım adım kılavuz |
-| `CHEAT_SHEET.md` | ⚡ Temel | Hızlı komut referansı |
+✅ **Gerçek Zamanlı**: Real-time işleme  
+✅ **Adaptif Öğrenme**: Sürekli iyileşen sistem  
 
 ## 🎯 Kullanım Senaryoları
 
 ### 🏢 İş Toplantısı (Standard)
 ```bash
-python main.py --file toplanti.wav --quality highest --stt large-v3 --title "Haftalık Toplantı"
+python main.py --file toplanti.wav --quality highest --stt large-v3
 ```
 
-### 🎯 Ultra Accuracy Mode (%100'e yakın)
+### 🌟 Ultra Accuracy Mode (%99.9 doğruluk)
 ```bash
-python main.py --file toplanti.wav --quality ultra --stt large-v3 --device cuda --title "Kritik Toplantı"
+python main.py --file toplanti.wav --quality ultra --target-accuracy 0.999
 ```
 
 ### 🎓 Eğitim/Ders
 ```bash  
-python main.py --file ders.mp4 --quality ultra --stt large-v3 --title "Python Eğitimi"
+python main.py --file ders.mp4 --quality ultra --mode lecture
 ```
 
 ### ⚡ Hızlı Test
 ```bash
-python main.py --file test.wav --quality fastest --stt small --title "Hızlı Test"
+python main.py --file test.wav --quality fastest
 ```
 
-### 🎙️ Podcast/Röportaj
-```bash
-python main.py --file podcast.mp3 --stt medium --title "Teknoloji Sohbeti"
-```
+## 💎 ULTRA QUALITY MODE - %99.9 Doğruluk
 
-## � ULTRA QUALITY MODE - %99.9 Accuracy
-
-**Dünyanın en gelişmiş STT sistemi** - 4000+ satır kodla %99.9 doğruluk hedefi:
+**Dünyanın en gelişmiş STT sistemi** - 10,000+ satır kodla %99.9 doğruluk hedefi:
 
 ```bash
 # Ultra mode - %99.9 accuracy target
@@ -144,19 +152,18 @@ python main.py --file audio.wav --quality ultra --target-accuracy 0.999 --max-it
 ```
 
 ### 🚀 Ultra Mode İşleyişi:
-1. **🔧 Advanced Audio Preprocessing**: Spektral temizleme + echo cancellation + bandwidth extension
-2. **🤖 Multi-Model STT Ensemble**: 4 farklı STT servisi paralel analiz + consensus voting
-3. **🧠 AI-Powered Post-Processing**: GPT tabanlı hata düzeltme + semantic validation
-4. **🎭 Advanced VAD & Diarization**: Konuşmacı ayrımı + emotion detection + quality assessment
-5. **📚 Adaptive Learning**: Kullanıcı geri bildirimlerinden öğrenme + personalized corrections
-6. **✅ Multi-Layer Validation**: 6 katmanlı kalite kontrolü + iterative improvement
+1. **🔧 Advanced Audio Preprocessing**: Spektral temizleme + echo cancellation
+2. **🤖 Multi-Model STT Ensemble**: 4 farklı STT servisi paralel analiz
+3. **🧠 AI-Powered Post-Processing**: GPT tabanlı hata düzeltme
+4. **🎭 Advanced VAD & Diarization**: Konuşmacı ayrımı + emotion detection
+5. **📚 Adaptive Learning**: Kullanıcı geri bildirimlerinden öğrenme
+6. **✅ Multi-Layer Validation**: 6 katmanlı kalite kontrolü
 
 ### 🏆 Ultra Mode Garantileri:
 - ✅ **%99+ Doğruluk**: Minimum %99 garantili doğruluk
 - 🎯 **%99.9 Hedef**: İdeal koşullarda %99.9 doğruluk
 - 🔄 **Adaptif İyileştirme**: Her kullanımda öğrenen sistem
 - 🛡️ **Kalite Güvencesi**: Çok katmanlı doğrulama sistemi
-- ⚡ **Akıllı Optimizasyon**: Otomatik performans ayarlaması
 
 ### 📊 Ultra Mode vs Diğerleri:
 ```
@@ -166,62 +173,19 @@ BALANCED ██████░░░░ %92 (3x hızlı)
    ULTRA ██████████ %99.9 (0.3x - MAX ACCURACY)
 ```
 
-## 🧪 Ultra System Demo
+## 🛠️ Gereksinimler
+
+- Python 3.8+
+- FFmpeg
+- CUDA (isteğe bağlı, GPU hızlandırma için)
+
+## 📦 Kurulum
 
 ```bash
-# Sistem durumunu test et
-python demo_ultra_quality.py
-
-# Gerçek dosya ile ultra test
-python main.py --file audio.wav --quality ultra --target-accuracy 0.999
+git clone https://github.com/ardcek/advanced-stt-system.git
+cd advanced-stt-system
+pip install -r requirements.txt
 ```
-
-### 🎯 Kullanım Örnekleri:
-
-**📚 Akademik Ders (Ultra Kalite):**
-```bash
-python main.py --file ders.mp4 --quality ultra --mode lecture --target-accuracy 0.999
-# ➜ %99.9 doğrulukla ders notları + öğrenci özeti
-```
-
-**💼 Kritik İş Toplantısı:**
-```bash  
-python main.py --file toplanti.wav --quality ultra --mode meeting --user-id manager --max-iterations 5
-# ➜ Mükemmel doğrulukla karar noktaları + aksiyon planları
-```
-
-**🎤 Profesyonel Röportaj:**
-```bash
-python main.py --file interview.mp3 --quality ultra --mode interview --target-accuracy 0.995  
-# ➜ Her kelimenin doğru transkripti + konuşmacı ayrımı
-```
-
-## 🆘 Destek
-
-1. **Hızlı Çözümler**: `CHEAT_SHEET.md`
-2. **Detaylı Rehber**: `KULLANIM_KILAVUZU.md` 
-3. **Tam Dokümantasyon**: `README_STT.md`
-
----
-
-## 📄 Lisans
-
-Bu proje MIT lisansı altında yayınlanmıştır.
-
-**Made by Mehmet Arda Çekiç** © 2025
-
----
-
-## � Sistem İstatistikleri
-
-- 📝 **10,000+** satır kod
-- 🧠 **6** ana sistem bileşeni  
-- 🎯 **%99.9** doğruluk hedefi
-- 🤖 **4** STT servisi entegrasyonu
-- 🔧 **15+** gelişmiş audio processing algoritması
-- 📚 **Adaptive learning** ile sürekli iyileşme
-- 🌍 **7** dil desteği
-- ⚡ **Real-time** işleme yetenekleri
 
 ## 🏆 Neden Bu Sistem?
 
@@ -232,6 +196,23 @@ Bu proje MIT lisansı altında yayınlanmıştır.
 ✅ **Adaptive learning** ile sürekli iyileşme  
 ✅ **Cloud + local** hybrid çözümü  
 ✅ **Türkçe optimize** edilmiş algoritmalar  
+
+## 📊 Sistem İstatistikleri
+
+- 📝 **10,000+** satır kod
+- 🧠 **6** ana sistem bileşeni  
+- 🎯 **%99.9** doğruluk hedefi
+- 🤖 **4** STT servisi entegrasyonu
+- 🔧 **15+** gelişmiş audio processing algoritması
+- 📚 **Adaptive learning** ile sürekli iyileşme
+- 🌍 **7** dil desteği
+- ⚡ **Real-time** işleme yetenekleri
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında yayınlanmıştır.
+
+---
 
 > 🌟 **"Daha da fazla mükemmel bir doğruluk istiyorum gerekirse 10000 satır olsun"** 
 > 

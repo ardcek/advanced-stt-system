@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Gelişmiş Ses Transkripsiyon Uygulaması - Uzun Kayıt Desteği
+Ultra-Advanced STT Sistemi - %99.9 Doğruluk Hedefi
 Made by Mehmet Arda Çekiç © 2025
+
+🚀 ÖZELLİKLER:
+- Ultra-advanced audio preprocessing (SpectralNoiseReducer, EchoCanceller)
+- Multi-model STT ensemble (Whisper + Azure + Google + IBM Watson)
+- AI-powered post-processing (GPT-based correction)
+- Advanced VAD & speaker diarization
+- Adaptive learning system
+- Ultra quality mode with 99.9% accuracy target
 """
 
 import argparse
@@ -10,6 +18,15 @@ import os
 import gc
 import time
 from modules import audio, stt, nlp, report, diarize
+
+# Ultra Quality System import
+try:
+    from modules.ultra_quality_mode import UltraQualitySTT, transcribe_with_ultra_quality
+    _HAS_ULTRA_MODE = True
+    print("✅ Ultra Quality Mode available")
+except ImportError:
+    _HAS_ULTRA_MODE = False
+    print("⚠️ Ultra Quality Mode not available")
 
 # Performans izleme için opsiyonel import
 try:
@@ -59,15 +76,29 @@ def _log_performance_metrics(step_name: str, start_time: float, memory_before: d
 
 
 def run(args):
-    """Ana uygulama mantığı - uzun kayıt desteği ile"""
+    """Ana uygulama mantığı - Ultra Quality Mode ile %99.9 doğruluk"""
     
     # Performans izleme başlatma
     total_start_time = time.time()
     initial_memory = _monitor_memory_usage()
     
-    print("🚀 Performans izleme başlatıldı...")
+    print("🌟 ULTRA-ADVANCED STT SİSTEMİ BAŞLATILIYOR...")
+    print(f"🎯 Hedef Doğruluk: {args.target_accuracy:.1%}")
+    print(f"🔥 Quality Mode: {args.quality}")
+    
     if _HAS_PSUTIL:
         print(f"   💾 Başlangıç bellek kullanımı: {initial_memory['rss']:.1f}MB")
+    
+    # Ultra Quality Mode kontrolü
+    use_ultra_mode = (args.quality == "ultra" and _HAS_ULTRA_MODE)
+    
+    if use_ultra_mode:
+        print("🚀 ULTRA QUALITY MODE AKTIF!")
+        print("   • Advanced Audio Preprocessing")
+        print("   • Multi-Model STT Ensemble") 
+        print("   • AI-Powered Post-Processing")
+        print("   • Advanced VAD & Diarization")
+        print("   • Adaptive Learning System")
     
     # Dosya boyutu kontrolü için uzun kayıt optimizasyonu
     is_long_recording = False
@@ -86,9 +117,10 @@ def run(args):
                 args.window = 1800  # 30 dakikalık pencereler
             print(f"   • Pencere süresi: {args.window} saniye ({args.window//60} dakika)")
 
-    # STT motor başlatma
-    print("🚀 STT motoru başlatılıyor...")
-    stt.initialize()
+    # STT motor başlatma (sadece ultra mode değilse)
+    if not use_ultra_mode:
+        print("🚀 Standart STT motoru başlatılıyor...")
+        stt.initialize()
 
     # 1) Ses kaynağını belirleme
     if args.file:
@@ -104,55 +136,105 @@ def run(args):
         print(f"⏱️ {args.duration} saniyelik kayıt başlıyor...")
         wav_path = audio.record_audio(duration=args.duration, filename="meeting.wav")
 
-    # 2) Gelişmiş transkripsiyon
-    print(f"🎤 Transkripsiyon başlıyor ({args.stt} model, {args.language} dil)...")
+    # 2) Ultra Quality Transkripsiyon
+    print(f"🎤 Transkripsiyon başlıyor...")
     
     # Performans ölçümü başlat
     transcription_start = time.time()
     memory_before_transcription = _monitor_memory_usage()
     
-    try:
-        # Gelişmiş transkripsiyon çağrısı
-        result = stt.transcribe_advanced(
-            wav_path,
-            model_name=args.stt,
-            device=args.device,
-            language=args.language,
-            content_type=args.mode,
-            quality=args.quality,  # Ultra mode için yeni parametre
-            long_form=is_long_recording,
-            beam_size=10 if args.quality == "ultra" else (5 if is_long_recording else 1),  # Ultra modda maksimum beam size
-            vad_threshold=0.2 if args.quality == "ultra" else (0.3 if is_long_recording else 0.5)  # Ultra modda daha hassas VAD
-        )
-        
-        segments = result['segments']
-        raw_text = result['text']
-        confidence_score = result.get('confidence', 0.0)
-        audio_quality = result.get('audio_quality', 'Bilinmiyor')
-        
-        print(f"✅ Transkripsiyon tamamlandı! Güvenilirlik: {confidence_score:.1%}")
-        
-        # Transkripsiyon performansını logla
-        memory_after_transcription = _log_performance_metrics(
-            "Transkripsiyon", transcription_start, memory_before_transcription
-        )
-        
-    except Exception as e:
-        print(f"❌ Transkripsiyon hatası: {e}")
-        # Fallback: basit transkripsiyon
-        print("   🔄 Basit transkripsiyon modu ile yeniden deneniyor...")
+    # Ultra Quality Mode ile transkripsiyon
+    if use_ultra_mode:
+        print("🌟 ULTRA QUALITY MODE ile transkripsiyon...")
         try:
-            r = stt.transcribe(wav_path, language=args.language, model_size=args.stt, device=args.device)
-            segments = r.get("segments", [])
-            raw_text = r.get("text", "")
-            confidence_score = 0.0
-            audio_quality = "Bilinmiyor"
-            print("   ✅ Basit transkripsiyon başarılı!")
-        except Exception as e2:
-            print(f"   ❌ Basit transkripsiyon da başarısız: {e2}")
-            # En son fallback: boş sonuç
-            segments, raw_text = [], ""
-            confidence_score, audio_quality = 0.0, "Hata"
+            ultra_stt = UltraQualitySTT()
+            ultra_result = ultra_stt.transcribe_ultra_quality(
+                audio_path=wav_path,
+                user_id=args.user_id,
+                context_type=args.mode,
+                target_accuracy=args.target_accuracy,
+                max_iterations=args.max_iterations
+            )
+            
+            raw_text = ultra_result.text
+            confidence_score = ultra_result.confidence
+            audio_quality = f"Ultra ({ultra_result.quality_metrics.overall_score:.3f})"
+            
+            # Ultra mode'da segments oluştur (basitleştirilmiş)
+            segments = []
+            if ultra_result.speakers:
+                for speaker in ultra_result.speakers:
+                    segments.append({
+                        'start': speaker['start_time'],
+                        'end': speaker['end_time'],
+                        'text': raw_text,  # Basitleştirilmiş
+                        'speaker': speaker['speaker_id']
+                    })
+            else:
+                # Tek segment
+                segments = [{
+                    'start': 0.0,
+                    'end': 10.0,  # Placeholder
+                    'text': raw_text,
+                    'speaker': 'Speaker_0'
+                }]
+            
+            print(f"✅ ULTRA QUALITY transkripsiyon tamamlandı!")
+            print(f"   🎯 Final Confidence: {confidence_score:.3f}")
+            print(f"   🏆 Quality Score: {ultra_result.quality_metrics.overall_score:.3f}")
+            print(f"   🔄 Iterations Used: {ultra_result.processing_stats.get('iterations_used', 1)}")
+            print(f"   ✅ Target Achieved: {ultra_result.processing_stats.get('target_achieved', False)}")
+            
+        except Exception as e:
+            print(f"❌ Ultra Quality transkripsiyon hatası: {e}")
+            print("   🔄 Standart transkripsiyon modu ile devam ediliyor...")
+            use_ultra_mode = False  # Fallback to standard mode
+            
+    # Standart transkripsiyon (fallback veya ultra mode mevcut değilse)
+    if not use_ultra_mode:
+        print(f"🎤 Standart transkripsiyon ({args.stt} model, {args.language} dil)...")
+        try:
+            # Gelişmiş transkripsiyon çağrısı
+            result = stt.transcribe_advanced(
+                wav_path,
+                model_name=args.stt,
+                device=args.device,
+                language=args.language,
+                content_type=args.mode,
+                quality=args.quality,
+                long_form=is_long_recording,
+                beam_size=10 if args.quality == "ultra" else (5 if is_long_recording else 1),
+                vad_threshold=0.2 if args.quality == "ultra" else (0.3 if is_long_recording else 0.5)
+            )
+            
+            segments = result['segments']
+            raw_text = result['text']
+            confidence_score = result.get('confidence', 0.0)
+            audio_quality = result.get('audio_quality', 'Bilinmiyor')
+            
+            print(f"✅ Standart transkripsiyon tamamlandı! Güvenilirlik: {confidence_score:.1%}")
+            
+        except Exception as e:
+            print(f"❌ Transkripsiyon hatası: {e}")
+            # Fallback: basit transkripsiyon
+            print("   🔄 Basit transkripsiyon modu ile yeniden deneniyor...")
+            try:
+                r = stt.transcribe(wav_path, language=args.language, model_size=args.stt, device=args.device)
+                segments = r.get("segments", [])
+                raw_text = r.get("text", "")
+                confidence_score = 0.0
+                audio_quality = "Bilinmiyor"
+                print("   ✅ Basit transkripsiyon başarılı!")
+            except Exception as e2:
+                print(f"   ❌ Basit transkripsiyon da başarısız: {e2}")
+                # En son fallback: boş sonuç
+                segments, raw_text = [], ""
+                confidence_score, audio_quality = 0.0, "Hata"
+    
+    # Transkripsiyon performansını logla
+    memory_after_transcription = _log_performance_metrics(
+        "Transkripsiyon", transcription_start, memory_before_transcription
+    )
 
     # 3) Gelişmiş metin düzeltme
     print("✏️ Gelişmiş metin düzeltme ve normalizasyon...")
@@ -313,17 +395,20 @@ def run(args):
     print("="*60)
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Meeting/Lecture Transcriber – Maks Doğruluk")
+    p = argparse.ArgumentParser(description="Ultra-Advanced STT System – %99.9 Accuracy Target")
     p.add_argument("--file", help="Kayıt dosyası (mp3/mp4/m4a/wav)")
     p.add_argument("--stream", action="store_true", help="Sınırsız canlı kayıt (ENTER ile durdur)")
     p.add_argument("--duration", type=int, default=15, help="Süreli kayıt (sn)")
     p.add_argument("--window", type=int, default=600, help="Pencere özeti süresi (sn, varsayılan 600=10 dk)")
-    p.add_argument("--stt", default="large-v3", choices=["tiny","base","small","medium","large-v2","large-v3"], help="Whisper modeli")
+    p.add_argument("--stt", default="large-v3", choices=["tiny","base","small","medium","large-v2","large-v3"], help="Whisper modeli (standart modda)")
     p.add_argument("--device", default="cpu", choices=["cpu","cuda"], help="STT cihazı")
     p.add_argument("--language", default="tr", choices=["tr","en","de","fr","es","it","la"], help="Kayıt dili")
     p.add_argument("--mode", default="auto", choices=["meeting","lecture","interview","auto"], help="İçerik türü")
-    p.add_argument("--quality", default="ultra", choices=["fastest","balanced","highest","ultra"], help="Doğruluk seviyesi (%100'e yakın için ultra)")
-    p.add_argument("--title", default="Ders/Toplantı – Notlar")
+    p.add_argument("--quality", default="ultra", choices=["fastest","balanced","highest","ultra"], help="Doğruluk seviyesi (ultra = %99.9 hedef)")
+    p.add_argument("--target-accuracy", type=float, default=0.999, help="Hedef doğruluk oranı (0.999 = %99.9)")
+    p.add_argument("--max-iterations", type=int, default=3, help="Ultra modda maksimum iterasyon sayısı")
+    p.add_argument("--user-id", default="default", help="Adaptive learning için kullanıcı ID")
+    p.add_argument("--title", default="Ultra-Advanced STT – Notlar")
     return p.parse_args()
 
 if __name__ == "__main__":

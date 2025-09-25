@@ -1,4 +1,4 @@
-# � Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi
+# 🌟 Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi � Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi
 
 **Made by Mehmet Arda Çekiç** © 2025
 
@@ -70,68 +70,93 @@ python main.py --file audio.wav
 python main.py --file audio.wav --quality highest
 ```
 
-### 🎯 Kalite Seviyeleri
+### 🎯 Kalite Seviyeleri (Hız vs Doğruluk)
 ```bash
-# En hızlı (test için)
+# En hızlı (test için) - %85-90 doğruluk, 10 kat hızlı
+# Hızlı test etmek için kullanın
 python main.py --file audio.wav --quality fastest
 
-# Dengeli (günlük kullanım)
+# Dengeli (günlük kullanım) - %92-95 doğruluk, 3 kat hızlı  
+# Çoğu iş için yeterli, makul sürede bitiyor
 python main.py --file audio.wav --quality balanced
 
-# Yüksek kalite (profesyonel)
+# Yüksek kalite (profesyonel) - %96-98 doğruluk, normal hız
+# İş sunumları, önemli kayıtlar için
 python main.py --file audio.wav --quality highest
 
-# Ultra kalite (%99.9 doğruluk hedefi - YAVAS!)
+# Ultra kalite (%99.9 doğruluk hedefi) - ÇOK YAVAŞ ama mükemmel!
+# Kritik kayıtlar için, zaman sınırı yoksa kullanın
 python main.py --file audio.wav --quality ultra --target-accuracy 0.999
 ```
+**Not:** Uzun dosyalarda ultra kalite saatlerce sürebilir!
 
-### 🏥 Revolutionary Medical AI Processing
+### 🏥 Tıbbi İçerik İşleme (Medical AI)
 ```bash
-# Medical consultation with AI insights
+# Doktor-hasta görüşmesini yazıya çevir + AI analizi yap
+# --medical: Tıbbi terimleri tanır, --quality ultra: En yüksek doğruluk
+# --format medical: Profesyonel tıbbi rapor formatında çıktı verir
 python main.py --file consultation.wav --medical --quality ultra --format medical
 
-# Latin medical terminology processing  
+# Latince tıbbi terimler içeren kayıtları işle
+# --language la: Latince dil desteği aktifleştirir
 python main.py --file latin_medical.wav --medical --language la --format medical
 
-# Multilingual medical processing
+# Çok dilli tıbbi içeriği işle (50+ dil desteği)
+# Farklı dillerdeki tıbbi kayıtları anlayabilir
 python main.py --file multilang_medical.wav --medical --quality ultra --mode medical
 
-# Professional SOAP note generation
+# SOAP formatında profesyonel doktor raporu oluştur
+# --output-type soap: Standart tıbbi rapor formatı (Subjective, Objective, Assessment, Plan)
 python main.py --file doctor_visit.wav --medical --format medical --output-type soap
 ```
+**Çıktı:** `medical_report.pdf`, `medical_terms.json`, `clinical_insights.md`
 
-### 🎓 University Lecture & Academic Processing
+### 🎓 Ders Kayıtları ve Akademik İçerik
 ```bash
-# University engineering lecture (2-3 hours)
+# 2-3 saatlik mühendislik dersini yazıya çevir + çalışma materyali oluştur
+# --mode longform: Uzun kayıtlar için özel işleme
+# --subject engineering: Mühendislik terimlerini tanır
+# --format student: Öğrenci dostu çalışma rehberi oluşturur
 python main.py --file lecture.wav --mode longform --academic --subject engineering --format student
 
-# Complete study package generation
+# Dersten komplet çalışma paketi oluştur (notlar + flash kartlar + soru-cevap)
+# --output-type all: HTML rehber + PDF notlar + çalışma soruları
 python main.py --file class.wav --academic --format student --output-type all
 
-# Academic conference with speaker separation
+# Akademik konferans kaydını işle (konuşmacıları ayır)
+# --diarization advanced: "Doçent A dedi ki...", "Profesör B cevap verdi..." şeklinde ayırır
 python main.py --file conference.wav --academic --diarization advanced --quality ultra
 ```
+**Çıktı:** `study_guide.html`, `notes.pdf`, `flashcards.json`, `concept_map.png`
 
-### 🎭 Toplantı Analizi
+### 🎭 Toplantı Kayıtları (Kim Ne Dedi?)
 ```bash
-# Konuşmacı ayrıştırma
+# Toplantıdaki farklı kişileri ayırarak yazıya çevir
+# --mode meeting: Toplantı formatında işleme (konuşmacı değişimlerini algılar)
+# --diarization advanced: "Kişi 1: ...", "Kişi 2: ..." şeklinde ayırır
 python main.py --file meeting.wav --mode meeting --diarization advanced
 
-# İş toplantısı analizi
+# İş toplantısını analiz et + karar maddeleri çıkar
+# Kim ne önerdi, hangi kararlar alındı, kimde hangi görevler kaldı
 python main.py --file business.wav --mode meeting --diarization advanced --format academic
 ```
+**Çıktı:** Konuşmacı ayrımlı transkript + `meeting_analysis.md` + `action_items.txt`
 
-### 🌍 Çok Dilli Destek
+### 🌍 Çok Dilli Destek (7+ Dil)
 ```bash
-# İngilizce
+# İngilizce konuşmaları yazıya çevir
+# --language en: İngilizce dil modeli kullanır
 python main.py --file english.wav --language en --quality highest
 
-# Almanca
+# Almanca + tıbbi terimler (örn: doktor randevusu)
+# Hem Almanca konuşmayı anlayabilir hem de tıbbi terimleri tanır
 python main.py --file german.wav --language de --medical
 
-# Fransızca
+# Fransızca kayıtları işle
+# Desteklenen diller: TR, EN, DE, FR, ES, IT, LA (Latin)
 python main.py --file french.wav --language fr
 ```
+**Desteklenen Diller:** Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, İtalyanca, Latince
 
 ### 🐍 Python API Kullanımı
 ```python

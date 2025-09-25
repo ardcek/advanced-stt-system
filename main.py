@@ -41,6 +41,19 @@ except ImportError:
     _HAS_MEDICAL_AI = False
     print("⚠️ Medical AI System not available")
 
+# Practical Problem-Solving System import
+try:
+    from modules.smart_academic_processor import SmartAcademicProcessor
+    from modules.advanced_meeting_diarization import AdvancedMeetingDiarization
+    from modules.long_form_audio_processor import LongFormAudioProcessor
+    from modules.academic_meeting_intelligence import AcademicMeetingAI
+    from modules.student_friendly_formats import StudentFriendlyFormatter
+    _HAS_PRACTICAL_MODULES = True
+    print("✅ Practical Problem-Solving System available")
+except ImportError:
+    _HAS_PRACTICAL_MODULES = False
+    print("⚠️ Practical Problem-Solving System not available")
+
 # Performans izleme için opsiyonel import
 try:
     import psutil
@@ -95,16 +108,22 @@ def run(args):
     total_start_time = time.time()
     initial_memory = _monitor_memory_usage()
     
-    print("🌟 ULTRA-ADVANCED STT SİSTEMİ + MEDİKAL AI BAŞLATILIYOR...")
+    print("🌟 ULTRA-ADVANCED STT SİSTEMİ + MEDİKAL AI + PRATİK ÇÖZÜMLER BAŞLATILIYOR...")
     print(f"🎯 Hedef Doğruluk: {args.target_accuracy:.1%}")
     print(f"🔥 Quality Mode: {args.quality}")
     print(f"🏥 Medical Mode: {args.medical}")
+    print(f"🎓 Academic Mode: {args.academic}")
+    print(f"📊 Format: {args.format}")
     
     if _HAS_PSUTIL:
         print(f"   💾 Başlangıç bellek kullanımı: {initial_memory['rss']:.1f}MB")
     
     # Revolutionary Medical AI System initialization
     medical_processor = None
+    academic_processor = None
+    meeting_diarizer = None
+    longform_processor = None
+    student_formatter = None
     medical_terminology = None
     multilingual_processor = None
     medical_formatter = None
@@ -513,9 +532,15 @@ def parse_args():
     p.add_argument("--stt", default="large-v3", choices=["tiny","base","small","medium","large-v2","large-v3"], help="Whisper modeli (standart modda)")
     p.add_argument("--device", default="cpu", choices=["cpu","cuda"], help="STT cihazı")
     p.add_argument("--language", default="tr", choices=["tr","en","de","fr","es","it","la"], help="Kayıt dili")
-    p.add_argument("--mode", default="auto", choices=["meeting","lecture","interview","medical","auto"], help="İçerik türü")
+    p.add_argument("--mode", default="auto", choices=["meeting","lecture","interview","medical","academic","longform","auto"], help="İçerik türü")
     p.add_argument("--quality", default="ultra", choices=["fastest","balanced","highest","ultra"], help="Doğruluk seviyesi (ultra = %99.9 hedef)")
     p.add_argument("--medical", action="store_true", help="Revolutionary Medical AI Mode - Latin terminology + multilingual medical processing")
+    p.add_argument("--academic", action="store_true", help="Smart Academic Processing - University lecture optimization")
+    p.add_argument("--diarization", default="basic", choices=["basic","advanced"], help="Speaker diarization level")
+    p.add_argument("--subject", default="general", help="Academic subject for specialized processing")
+    p.add_argument("--format", default="standard", choices=["standard","medical","student","academic"], help="Output format type")
+    p.add_argument("--output-type", default="transcript", choices=["transcript","study_guide","notes","all"], help="Output type")
+    p.add_argument("--resume-session", action="store_true", help="Resume long-form processing session")
     p.add_argument("--target-accuracy", type=float, default=0.999, help="Hedef doğruluk oranı (0.999 = %99.9)")
     p.add_argument("--max-iterations", type=int, default=3, help="Ultra modda maksimum iterasyon sayısı")
     p.add_argument("--user-id", default="default", help="Adaptive learning için kullanıcı ID")

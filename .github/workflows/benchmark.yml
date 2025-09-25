@@ -1,0 +1,108 @@
+name: 📊 STT Benchmark Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly benchmarks every Sunday at 02:00 UTC
+    - cron: '0 2 * * 0'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-benchmark.txt
+        
+    - name: 🚀 Run Quick Benchmark
+      run: |
+        cd benchmark
+        python run_full_benchmark.py
+        
+    - name: 📊 Upload Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: |
+          benchmark/benchmark_results.json
+          benchmark/benchmark_report.md
+          
+    - name: 📝 Update Benchmark Badge
+      run: |
+        # Create dynamic badge based on results
+        python -c "
+        import json
+        with open('benchmark/benchmark_results.json') as f:
+            results = json.load(f)
+        wer = results['quality']['ultra']['wer']
+        color = 'brightgreen' if wer < 0.2 else 'yellow' if wer < 1.0 else 'red'
+        badge = f'WER-{wer}%25-{color}'
+        print(f'::set-output name=badge::{badge}')
+        "
+      id: badge
+      
+    - name: 💾 Commit Results
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add benchmark/
+        git diff --staged --quiet || git commit -m "📊 Update benchmark results [automated]"
+        git push || echo "Nothing to push"
+
+  performance-monitoring:
+    runs-on: ubuntu-latest
+    needs: benchmark
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: 📈 Performance Regression Check
+      run: |
+        python -c "
+        import json
+        import sys
+        
+        try:
+            with open('benchmark/benchmark_results.json') as f:
+                current = json.load(f)
+            
+            # Check if performance meets thresholds
+            ultra_wer = current['quality']['ultra']['wer']
+            medical_acc = current['medical']['consultation']['medical_accuracy']
+            
+            print(f'Ultra WER: {ultra_wer}%')
+            print(f'Medical Accuracy: {medical_acc}%')
+            
+            # Performance gates
+            if ultra_wer > 0.5:
+                print('❌ REGRESSION: Ultra WER > 0.5%')
+                sys.exit(1)
+            if medical_acc < 99.0:
+                print('❌ REGRESSION: Medical accuracy < 99%')
+                sys.exit(1)
+                
+            print('✅ All performance gates passed!')
+            
+        except FileNotFoundError:
+            print('⚠️ Benchmark results not found')
+            sys.exit(1)
+        "
+        
+    - name: 🔔 Notify on Regression
+      if: failure()
+      run: |
+        echo "Performance regression detected!"
+        # In real scenario, send Slack/email notification

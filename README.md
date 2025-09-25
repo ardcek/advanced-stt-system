@@ -1,4 +1,4 @@
-# 🌟 Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi � Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi
+# 🌟 Ultra Advanced STT System + Revolutionary Medical AI - %99.9 Doğruluk Hedefi 🎯
 
 **Made by Mehmet Arda Çekiç** © 2025
 

@@ -1343,7 +1343,7 @@ def post_process_result(result: TranscriptionResult, language: str = "tr") -> Tr
 def transcribe_simple(audio_path: str, language: str = "tr") -> str:
     """En basit kullanım: sadece metin döndür"""
     result = transcribe_advanced(audio_path, language=language, quality="balanced")
-    return result.text
+    return result.get('text', '') if isinstance(result, dict) else str(result)
 
 def transcribe_with_speakers(audio_path: str, language: str = "tr") -> Dict[str, Any]:
     """Konuşmacı bilgileri ile transkripsiyon"""

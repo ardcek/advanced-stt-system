@@ -50,6 +50,8 @@ notes.md
 *.mp3
 *.mp4
 *.m4a
+*.docx
+*.pdf
 !examples/*.wav
 
 # Geçici dosyalar
